@@ -1,0 +1,79 @@
+import pandas as pd        # For data loading and manipulation
+import numpy as np         # For numerical computations
+import matplotlib.pyplot as plt  # For visualizations
+import seaborn as sns      # For advanced visualizations
+You might also use:
+
+datetime or pandas.to_datetime for handling dates and time zones.
+
+plotly.express for interactive visualizations (optional).
+  Understanding & Explaining Metadata
+
+Metadata is the data about your dataset—column names, types, and their meanings.
+Steps to examine it:
+
+df.info()        # Data types, null counts
+df.describe()    # Summary stats for numerical columns
+df.columns       # List of column names
+df.head()        # Preview first rows
+
+
+In the BrightTV context, typical metadata could include:
+
+user_id: Unique identifier for each subscriber.
+
+session_id: Each viewing session.
+
+content_id/title: Program viewed.
+
+start_time / end_time: UTC timestamps of the session.
+
+duration: Minutes or seconds watched.
+
+device / platform: Web, mobile, Smart TV, etc.
+
+region / location: Viewer’s geography.
+
+Convert times to South Africa local time:
+
+df['start_time'] = pd.to_datetime(df['start_time'], utc=True).dt.tz_convert('Africa/Johannesburg')
+
+3. Core EDA Steps
+
+Missing Values
+    Missing Values
+
+df.isnull().sum()
+
+
+Descriptive Statistics
+
+df.describe(include='all')
+
+
+Viewership Trends
+
+Sessions per day/week.
+
+Peak viewing hours.
+
+User retention (active days per user).
+
+Content Analysis
+
+Top genres or shows.
+
+Average duration per content type.
+
+Device/Platform Usage
+
+Compare mobile vs. desktop vs. TV.
+
+Visualization Examples
+
+plt.figure(figsize=(10,6))
+sns.countplot(x='day_of_week', data=df)
+plt.title('Viewership by Day of Week')
+
+
+.
